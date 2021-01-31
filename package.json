@@ -21,7 +21,8 @@
     "@angular/router": "~11.1.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
-    "zone.js": "~0.11.3"
+    "zone.js": "~0.11.3",
+    "angular-in-memory-web-api": "latest"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1101.1",
