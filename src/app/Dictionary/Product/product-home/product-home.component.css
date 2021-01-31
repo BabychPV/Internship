@@ -1,0 +1,14 @@
+div
+{
+  border: 1px solid gray;
+  margin: 8px;
+  padding: 8px;
+}
+
+nav a.active {
+  border-radius: 3px;
+  padding: 2px 8px;
+  background-color: #E03237;
+  color:white;
+}
+

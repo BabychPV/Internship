@@ -15,7 +15,7 @@ export class DbService {
   }
 
   // SELECT
-  getAuthors(): Observable<AuthorBase[]> {
+  getAuthors(): Observable<any> {
     return this.http.get(environment.apiUrl + 'authors')
       .pipe(
         map(response => {
@@ -30,7 +30,7 @@ export class DbService {
       );
   }
 
-  getAuthorDetail(authorId: number): Observable<AuthorDetail[]> {
+  getAuthorDetail(authorId: number): Observable<any> {
     return this.http.get(`${environment.apiUrl + 'authors'}/${authorId}`)
       .pipe(
         map(response => {
@@ -45,7 +45,7 @@ export class DbService {
       );
   }
 
-  getBooksForAuthor(authorId: number): Observable<BookBase[]> {
+  getBooksForAuthor(authorId: number): Observable<any> {
     return this.http.get(`${environment.apiUrl + 'books'}/${authorId}`)
       .pipe(
         map(response => {
@@ -54,7 +54,7 @@ export class DbService {
       );
   }
 
-  getBooks(): Observable<BookBase[]> {
+  getBooks(): Observable<any> {
     return this.http.get(environment.apiUrl + 'books')
       .pipe(
         map(response => {
@@ -63,7 +63,7 @@ export class DbService {
       );
   }
 
-  getGenres(): Observable<GenresBase[]> {
+  getGenres(): Observable<any> {
     return this.http.get(environment.apiUrl + 'genres')
       .pipe(
         map(response => {
@@ -77,7 +77,7 @@ export class DbService {
       );
   }
 
-  getBooksForGenre(genreId: number): Observable<BookBase[]> {
+  getBooksForGenre(genreId: number): Observable<any> {
     return this.http.get(`${environment.apiUrl + 'books'}/${genreId}`)
       .pipe(
         map(response => {
@@ -137,7 +137,7 @@ export class DbService {
       .pipe(catchError(this.handleError));
   }
 
-  private handleError(httpError: HttpErrorResponse) {
+  private handleError(httpError: HttpErrorResponse): any {
     if (httpError.error instanceof ErrorEvent) {
       console.error('Произошла ошибка:', httpError.error.message);
     } else {

@@ -13,9 +13,9 @@ export class AuthService {
   redirectUrl: string;
 
   login(login: string, password: string): Observable<boolean> {
-    return of(true).pipe(   // создание Observable объекта
-      delay(1000),        // задержка на 1 сек.
-      tap(val => {        // выполнение действия для каждого элемента в последовательности
+    return of(true).pipe(
+      delay(1000),
+      tap(val => {
         if (login === 'admin' && password === 'qwerty') {
           this.isLoggedIn = true;
         }

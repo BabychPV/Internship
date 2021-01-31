@@ -1,21 +1,24 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-import {InMemoryWebApiModule} from 'angular-in-memory-web-api';
+import {FormsModule} from '@angular/forms';
 
 import {AppComponent} from './app.component';
-import { BackendService } from './Shared/backend.service';
+import { DictionaryModules } from './Dictionary/Dictionary.module';
+
+
+
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
-    BrowserModule, InMemoryWebApiModule.forRoot(BackendService),
+    BrowserModule,
+    FormsModule,
+    DictionaryModules
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-
-
 export class AppModule {
 }

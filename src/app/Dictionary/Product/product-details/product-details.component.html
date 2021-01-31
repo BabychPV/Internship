@@ -1,0 +1,22 @@
+<div>
+  <h2>Selected Product</h2>
+  Id: {{id}} <br/>
+  <label for="basic1">Name:</label>
+  <div class="input-group mb-3">
+    <input type="text" [(ngModel)]="product.name" (change)="changed()" class="form-control" id="basic1"
+           aria-describedby="basic-addon3">
+  </div>
+  <label for="basic2">Price:</label>
+  <div class="input-group mb-3">
+    <input type="text" [(ngModel)]="product.price" (change)="changed()" class="form-control" id="basic2"
+           aria-describedby="basic-addon3">
+  </div>
+  <label for="basic3">Description:</label>
+  <div class="input-group mb-3">
+    <input type="text" [(ngModel)]="product.description" (change)="changed()" class="form-control" id="basic3"
+           aria-describedby="basic-addon3">
+  </div>
+  <button class="btn-primary" (click)="save()">Save</button>
+
+  <button class="btn-light" (click)="goToProductList()">Go Back</button>
+</div>

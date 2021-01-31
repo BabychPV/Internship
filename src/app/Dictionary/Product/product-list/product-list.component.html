@@ -1,0 +1,23 @@
+<div>
+
+  <h2>Products List</h2>
+
+  <table class="table table-striped">
+    <thead class="thead-dark">
+    <tr>
+      <th>Name</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tr *ngFor="let product of products">
+      <td>{{product.name}}</td>
+      <td>
+        <button class="btn-light" (click)="onSelect(product)">Details</button>
+      </td>
+    </tr>
+  </table>
+
+  <router-outlet></router-outlet>
+
+</div>
+<router-outlet></router-outlet>
