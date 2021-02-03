@@ -1,43 +1,48 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {LoginComponent, ProductDetailsComponent, ProductHomeComponent, ProductListComponent} from './index';
-import { AuthGuardService } from './Shared/auth.guard.service';
+import {
+  AuthorDetailsComponent,
+  AuthorEditComponent,
+  AuthorListComponent,
+  GenreEditComponent,
+  GenreListComponent,
+  LoginComponent
+} from './index';
+import {AuthGuardService} from './Shared/auth.guard.service';
 
 export const routes: Routes =
   [
-    {path: '', redirectTo: 'HomeWork-05', pathMatch: 'full'},
-    {path: 'HomeWork-05', component: ProductHomeComponent},
+    {path: '', redirectTo: 'Authors', pathMatch: 'full'},
+    {path: 'Authors', component: AuthorListComponent},
     {
-      path: 'Product page detail', component: ProductHomeComponent,
-      children: [
-        {
-          path: '', component: ProductListComponent,
-          canActivate: [AuthGuardService]
-        },
-        {
-          path: ':id', component: ProductDetailsComponent,
-          canDeactivate: [AuthGuardService]
-        }
-      ]
-    }, {
-    path: 'Product PopUp detail', component: ProductHomeComponent,
-    children: [
-      {
-        path: '', component: ProductListComponent,
-        canActivateChild: [AuthGuardService],
-        children: [{
-          path: ':id', component: ProductDetailsComponent,
-          canDeactivate: [AuthGuardService]
-        }]
-      }
-    ]
-  },
+      path: 'Authors/Detail/:id', component: AuthorDetailsComponent,
+      canActivate: [AuthGuardService]
+    },
     {
-      path: 'Login', component: ProductHomeComponent,
-      children: [
-        {path: '', component: LoginComponent}
-      ]
+      path: 'Authors/Edit/:id', component: AuthorEditComponent,
+      canDeactivate: [AuthGuardService], canActivate: [AuthGuardService]
     }
+    ,
+    {
+      path: 'Authors/Edit', component: AuthorEditComponent,
+      canDeactivate: [AuthGuardService], canActivate: [AuthGuardService]
+    },
+    {path: 'Genres', component: GenreListComponent},
+    {
+      path: 'Genres/Detail/:id', component: GenreEditComponent,
+      canActivate: [AuthGuardService]
+    },
+    {
+      path: 'Genres/Edit/:id', component: GenreEditComponent,
+      canDeactivate: [AuthGuardService], canActivate: [AuthGuardService]
+    }
+    ,
+    {
+      path: 'Genres/Edit', component: GenreEditComponent,
+      canDeactivate: [AuthGuardService], canActivate: [AuthGuardService]
+    }
+    ,
+    {path: 'Login', component: LoginComponent}
   ];
 
 @NgModule({
@@ -45,5 +50,5 @@ export const routes: Routes =
   exports: [RouterModule]
 })
 
-export class Les5RoutingModule {
+export class DictionaryRoutingModule {
 }

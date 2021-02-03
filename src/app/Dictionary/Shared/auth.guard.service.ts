@@ -1,13 +1,5 @@
 import {Injectable} from '@angular/core';
-import {
-  ActivatedRouteSnapshot,
-  CanActivate,
-  CanActivateChild,
-  CanDeactivate,
-  Router,
-  RouterStateSnapshot,
-  UrlTree
-} from '@angular/router';
+import {ActivatedRouteSnapshot, CanActivate, CanActivateChild, CanDeactivate, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
 import {Observable} from 'rxjs';
 import {AuthService} from './auth.service';
 
@@ -22,7 +14,6 @@ export interface CanComponentDeactivate {
 })
 export class AuthGuardService implements CanActivate, CanActivateChild, CanDeactivate<CanComponentDeactivate> {
 
-
   constructor(private authService: AuthService, private router: Router) {
   }
 
@@ -33,7 +24,7 @@ export class AuthGuardService implements CanActivate, CanActivateChild, CanDeact
       return true;
     } else {
       this.authService.redirectUrl = state.url;
-      if (confirm('Login in!')) {
+      if (confirm('Введите учетные данные!')) {
         this.router.navigate(['Login']);
       }
       return false;

@@ -1,0 +1,130 @@
+<div class="container col-md-8">
+
+
+  <button class="mb-1 p-2 btn  btn-outline-secondary" (click)="goToAuthorList()">❮ Назад</button>
+  <hr class="mb-1">
+  <h2 class="mb-3">{{formAuthorHeader}}</h2>
+
+  <form [formGroup]="authorForm">
+
+    <div *ngIf="errorMessage" class="alert alert-danger">
+      {{errorMessage}}
+    </div>
+    <div class="form-group">
+      <label for="name">Имя:</label>
+      <input type="text" (change)="changed()" class="form-control" required
+             formControlName="name" id="name"
+             [ngClass]="getClass(name)">
+      <div class="alert alert-danger" *ngIf="name.errors && name.invalid && name.dirty">
+        <p *ngIf="name.errors.required">Поле обязательное для ввода</p>
+        <p *ngIf="name.errors.minlength">Минимальная длина имени {{name.errors.minlength.requiredLength}}</p>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="firstName">Фамилия:</label>
+      <input type="text" (change)="changed()" class="form-control" required
+             formControlName="firstName" id="firstName"
+             [ngClass]="getClass(firstName)">
+      <div class="alert alert-danger" *ngIf="firstName.invalid && firstName.dirty">
+        <p *ngIf="firstName.errors.required">Поле обязательное для ввода</p>
+        <p *ngIf="firstName.errors.minlength">Минимальная длина
+          фамилии {{firstName.errors.minlength.requiredLength}}</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="lastName">Отчество:</label>
+      <input type="text" (change)="changed()" class="form-control" required
+             formControlName="lastName" id="lastName"
+             [ngClass]="getClass(lastName)">
+      <div class="alert alert-danger" *ngIf="lastName.invalid && lastName.dirty">
+        <p *ngIf="lastName.errors.required">Поле обязательное для ввода</p>
+        <p *ngIf="lastName.errors.minlength">Минимальная длина отчества {{lastName.errors.minlength.requiredLength}}</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="birthday">Дата рождения:</label>
+      <input type="date" (change)="changed()" class="form-control" required
+             formControlName="birthday" id="birthday"
+             [ngClass]="getClass(birthday)">
+      <div class="alert alert-danger" *ngIf="birthday.invalid && birthday.dirty">
+        Поле обязательное для ввода
+      </div>
+    </div>
+    <div class="p-2 d-flex justify-content-end">
+      <button class="btn m-1 p-1 btn-info" (click)='modifyAuthor(authorForm)' [disabled]="authorForm.invalid || !authorForm.dirty">Сохранить
+      </button>
+    </div>
+
+
+    <div *ngIf="authorBooks && !editBookFlag">
+      <hr class="mb-1">
+      <div class="p-2 d-flex justify-content-between">
+        <h3 class="mt-md-2">Книги автора</h3>
+        <button class="btn m-1 p-1 btn-info" (click)='addBookFlag=true;viewFormBook(authorBook)'>Добавить книгу</button>
+      </div>
+      <table class="table table-striped table-hover">
+        <thead class="thead-light">
+        <tr>
+          <th class="text-center">Название</th>
+          <th class="text-center">Жанр</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tr *ngFor="let book of authorBooks">
+          <td>
+            {{book.name}}
+          </td>
+          <td class="text-center">
+            {{book.genreName}}
+          </td>
+          <td class="text-center">
+            <button class="btn btn-default" (click)="viewFormBook(book)">Редактировать</button>
+            <button class="btn btn-default" (click)="deleteBook(book)">Удалить</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <!--Редагувати\створити книгу-->
+    <div *ngIf="editBookFlag" class="form-group">
+      <h3 class="mt-md-2">{{formBookHeader}}</h3>
+      <form [formGroup]="bookForm">
+        <div class="form-group">
+          <label for="nameBook">Название:</label>
+          <input type="text" class="form-control" required
+                 formControlName="nameBook" id="nameBook"
+                 [ngClass]="getClass(nameBook)">
+          <div class="alert alert-danger" *ngIf="nameBook.errors && nameBook.invalid && nameBook.dirty">
+            <p *ngIf="nameBook.errors.required">Поле обязательное для ввода</p>
+            <p *ngIf="nameBook.errors.minlength">Минимальная длина
+              названия {{nameBook.errors.minlength.requiredLength}}</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="genresBook">Жанр:</label>
+          <select class="form-control" id="genresBook"
+                  formControlName="genresBook" required [ngClass]="getClass(genresBook)">
+            <option *ngFor="let gener of genersList"
+                    [value]="gener.id">{{gener.name}}</option>
+          </select>
+          <div class="alert alert-danger" *ngIf="genresBook.errors && genresBook.invalid && genresBook.dirty">
+            Поле обязательное для ввода
+          </div>
+        </div>
+
+        <div class="p-2 d-flex justify-content-end">
+          <button class="btn m-1 p-1 btn-info" (click)='modifyBook(bookForm)' [disabled]="bookForm.invalid">
+            Сохранить
+          </button>
+          <button class="btn m-1 p-1 btn-light" (click)='cancelEditBook()'>
+            Отмена
+          </button>
+        </div>
+      </form>
+    </div>
+
+  </form>
+
+
+</div>

@@ -1,21 +1,24 @@
-<h2>LOGIN</h2>
-<p>{{message}}</p>
+<div class="container col-md-8">
+  <h2>Вход</h2>
+  <p>{{message}}</p>
 
-<div *ngIf="!authService.isLoggedIn">
-   <label for="basic1">Login:</label>
-  <div class="input-group mb-3">
-    <input type="text" placeholder="admin" aria-label="admin" [(ngModel)]="userLogin" class="form-control" id="basic1"
-          required aria-describedby="basic-addon3">
+  <div *ngIf="!authService.isLoggedIn">
+    <label for="basic1">Логин:</label>
+    <div class="input-group mb-3">
+      <input type="text" placeholder="admin" aria-label="admin" [(ngModel)]="userLogin" class="form-control" id="basic1"
+             required aria-describedby="basic-addon3">
+    </div>
+    <label for="basic2">Пароль:</label>
+    <div class="input-group mb-3">
+      <input type="password" placeholder="qwerty" aria-label="qwerty" [(ngModel)]="password" class="form-control"
+             id="basic2"
+             required aria-describedby="basic-addon3">
+    </div>
+    <button class="btn btn-outline-info" (click)="login()">Войти</button>
   </div>
-  <label for="basic2">Password:</label>
-  <div class="input-group mb-3">
-    <input type="password" placeholder="qwerty" aria-label="qwerty" [(ngModel)]="password" class="form-control" id="basic2"
-        required   aria-describedby="basic-addon3">
+  <div *ngIf="authService.isLoggedIn">
+    <button class="btn btn-outline-light" (click)="logout()">Выйти</button>
   </div>
-  <button class="btn-primary" (click)="login()">Login</button>
-</div>
-<div *ngIf="authService.isLoggedIn">
-  <button class="btn-info" (click)="logout()">Logout</button>
 </div>
 
 

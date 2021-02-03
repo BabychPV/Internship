@@ -25,18 +25,15 @@ export class LoginComponent implements OnInit {
   }
 
   setMessage(): void {
-    this.message = 'Logged ' + (this.authService.isLoggedIn ? 'in' : 'out');
+    this.message = 'Повторите попытку';
   }
 
   login(): void {
-    this.message = 'Trying to log in ...';
+    this.message = 'Ожидайте ...';
     this.authService.login(this.userLogin, this.password).subscribe(() => {
       this.setMessage();
       if (this.authService.isLoggedIn) {
-        // Получение строки для перенаправления от сервиса
-        // если строки нет перенаправляем на страницу по умолчнанию
-        const redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/HomeWork-05';
-        // перенапраление пользователя
+        const redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/Authors';
         this.router.navigate([redirect]);
       }
     });

@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {InMemoryDbService} from 'angular-in-memory-web-api';
-import { AuthorDetail, BookBase, GenresBase } from './essence';
+import {AuthorBase, BookBase, GenreBase} from './essence';
 
 // Сереверна сторона - описує 3 суті: authors, genres, books.
 
@@ -14,19 +14,19 @@ export class BackendService implements InMemoryDbService {
 
   createDb(): any {
     const authors = [
-      {id: 1, name: 'Элиан', firstName: 'Т', lastName: 'А', birthday: '1990-01-01'},
-      {id: 2, name: 'Текшин', firstName: 'А', lastName: 'С', birthday: '1990-01-02'},
-      {id: 3, name: 'Delacruz', firstName: 'А', lastName: 'С', birthday: '1990-01-03'},
-      {id: 4, name: 'Шни', firstName: 'А', lastName: 'П', birthday: '1990-01-04'},
-      {id: 5, name: 'MrDog', firstName: 'А', lastName: 'G', birthday: '1990-01-05'},
-      {id: 6, name: 'Sandlord', firstName: 'А', lastName: 'R', birthday: '1990-01-06'},
-      {id: 7, name: 'Vector', firstName: 'D', lastName: 'R', birthday: '1990-01-07'},
-      {id: 8, name: 'Nooby', firstName: 'S', lastName: 'W', birthday: '1990-01-08'},
-      {id: 9, name: 'MARHUZ', firstName: 'F', lastName: 'R', birthday: '1990-01-09'},
-      {id: 10, name: 'Trurle', firstName: 'W', lastName: 'R', birthday: '1990-01-10'},
-      {id: 11, name: 'Северный', firstName: 'С', lastName: 'В', birthday: '1990-01-11'},
-      {id: 12, name: 'NonSemper', firstName: 'C', lastName: 'E', birthday: '1990-01-12'},
-      {id: 13, name: 'Findroid', firstName: 'A', lastName: 'E', birthday: '1990-01-14'}
+      {id: 1, firstName: 'Элиан', name: 'Том', lastName: 'Александр', birthday: '1990-01-01'},
+      {id: 2, firstName: 'Текшин', name: 'Александр', lastName: 'Сергеевич', birthday: '1990-01-02'},
+      {id: 3, firstName: 'Delacruz', name: 'Аlex', lastName: 'Сem', birthday: '1990-01-03'},
+      {id: 4, firstName: 'Шни', name: 'Александр', lastName: 'Петрович', birthday: '1990-01-04'},
+      {id: 5, firstName: 'MrDog', name: 'Аlex', lastName: 'Gerb', birthday: '1990-01-05'},
+      {id: 6, firstName: 'Sandlord', name: 'Justin', lastName: 'Ray', birthday: '1990-01-06'},
+      {id: 7, firstName: 'Vector', name: 'Dail', lastName: 'Rom', birthday: '1990-01-07'},
+      {id: 8, firstName: 'Nooby', name: 'Sepr', lastName: 'Ween', birthday: '1990-01-08'},
+      {id: 9, firstName: 'MARHUZ', name: 'Falk', lastName: 'Rav', birthday: '1990-01-09'},
+      {id: 10, firstName: 'Trurle', name: 'Win', lastName: 'Rom', birthday: '1990-01-10'},
+      {id: 11, firstName: 'Северный', name: 'Семен', lastName: 'Викторович', birthday: '1990-01-11'},
+      {id: 12, firstName: 'NonSemper', name: 'Cent', lastName: 'Elit', birthday: '1990-01-12'},
+      {id: 13, firstName: 'Findroid', name: 'Andul', lastName: 'Epil', birthday: '1990-01-14'}
     ];
 
     const genres = [
@@ -59,15 +59,8 @@ export class BackendService implements InMemoryDbService {
     return {authors, books, genres};
   }
 
-
-  genAuthorId(author: AuthorDetail[]): number {
-    return author.length > 0 ? Math.max(...author.map(hero => hero.id)) + 1 : 14;
-  }
-  genGenreId(genre: GenresBase[]): number {
-    return genre.length > 0 ? Math.max(...genre.map(hero => hero.id)) + 1 : 6;
-  }
-  genBookId(book: BookBase[]): number {
-    return book.length > 0 ? Math.max(...book.map(hero => hero.id)) + 1 : 16;
+  genId<T extends GenreBase | GenreBase | BookBase>(myTable: T[]): number {
+    return myTable.length > 0 ? Math.max(...myTable.map(t => t.id)) + 1 : 11;
   }
 
 }
