@@ -13,6 +13,12 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 })
 export class AuthorEditComponent implements OnInit, CanComponentDeactivate {
 
+
+  constructor(private router: Router,
+              private activatedRoute: ActivatedRoute,
+              private service: DbService) {
+  }
+
   authorDetail: AuthorBase = new AuthorBase(0, '', '', '', '');
   authorBooks: BookBase[];
   authorTempBooks: BookBase[];
@@ -38,11 +44,6 @@ export class AuthorEditComponent implements OnInit, CanComponentDeactivate {
   nameBook: FormControl;
   genresBook: FormControl;
 
-
-  constructor(private router: Router,
-              private activatedRoute: ActivatedRoute,
-              private service: DbService) {
-  }
 
   ngOnInit(): void {
     this.createFormControls();
@@ -214,13 +215,13 @@ export class AuthorEditComponent implements OnInit, CanComponentDeactivate {
     this.editBookFlag = false;
   }
 
-
   deleteBook(book: BookBase): void {
     if (confirm('Вы уверены?')) {
       this.service.deleteBook(book).subscribe(
         () => this.getBooks(this.authorDetail.id),
         error => this.errorMessage = error);
     }
+
   }
 
   // Жанр

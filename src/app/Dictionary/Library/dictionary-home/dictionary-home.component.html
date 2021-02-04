@@ -1,6 +1,6 @@
-<div class="h-100">
-  <header class="sticky-top">
-    <nav class="navbar navbar-expand-sm navbar-light" style="background-color: #e3f2fd">
+<div class="d-flex flex-column h-100 col-md-12 justify-content-center">
+  <header class="">
+    <nav class="navbar navbar-expand-sm fixed-top navbar-light" style="background-color: #e3f2fd">
       <a class="navbar-brand " href="#">Твоя библиотека</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
               aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,20 +27,20 @@
     </nav>
   </header>
 
-  <main role="main" class="bg-light flex-shrink-0">
-    <div class="py-md-4 bg-light">
-      <div class="container-md">
-        <router-outlet></router-outlet>
-      </div>
+  <main role="main" class="flex-shrink-0">
+    <div class="container mt-5 p-md-5">
+      <router-outlet></router-outlet>
     </div>
   </main>
 
-  <footer class="text-muted footer mt-auto py-3">
+  <footer style="background-color: #e3f2fd" class="text-muted fixed-bottom footer mt-auto">
     <div class="container">
-      <p class="float-right">
+      <div class="row  justify-content-between p-2">
+        <span>Все права зищищены</span>
+        <span class="">
         <a href="#">Вернуться вверх</a>
-      </p>
-      <p>Все права зищищены</p>
+        </span>
+      </div>
     </div>
   </footer>
 </div>

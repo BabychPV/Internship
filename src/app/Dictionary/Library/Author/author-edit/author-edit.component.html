@@ -64,7 +64,7 @@
         <h3 class="mt-md-2">Книги автора</h3>
         <button class="btn m-1 p-1 btn-info" (click)='addBookFlag=true;viewFormBook(authorBook)'>Добавить книгу</button>
       </div>
-      <div class="mb-md-2 d-flex justify-content-start"><input type="text" (change)="authorSearch($event)" class="col-md-4 form-control"
+      <div class="mb-md-2 d-flex justify-content-start"><input #SearchInput type="text" (change)="authorSearch($event)" class="col-md-4 form-control"
                   placeholder="Введите название книги"></div>
       <table class="table table-striped table-hover">
         <thead class="thead-light">
@@ -87,8 +87,9 @@
             {{book.genreName}}
           </td>
           <td class="text-center">
+
             <button class="btn btn-default" (click)="viewFormBook(book)">Редактировать</button>
-            <button class="btn btn-default" (click)="deleteBook(book)">Удалить</button>
+            <button type="button" class="btn btn-default" (click)="SearchInput.value=''; deleteBook(book)">Удалить</button>
           </td>
         </tr>
       </table>
@@ -125,7 +126,7 @@
           <button class="btn m-1 p-1 btn-info" (click)='modifyBook(bookForm)' [disabled]="bookForm.invalid">
             Сохранить
           </button>
-          <button class="btn m-1 p-1 btn-light" (click)='cancelEditBook()'>
+          <button type="button" class="btn m-1 p-1 btn-light" (click)='cancelEditBook()'>
             Отмена
           </button>
         </div>
