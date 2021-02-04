@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {InMemoryDbService} from 'angular-in-memory-web-api';
-import {AuthorBase, BookBase, GenreBase} from './essence';
+import {BookBase, GenreBase} from './essence';
 
 // Сереверна сторона - описує 3 суті: authors, genres, books.
 
@@ -39,7 +39,7 @@ export class BackendService implements InMemoryDbService {
 
     const books = [
       {id: 1, authorId: 1, genreId: 1, name: 'Тайные кланы'},
-      {id: 2, authorId: 1, genreId: 1, name: 'Тайные кланы 2'},
+      {id: 2, authorId: 1, genreId: 1, name: '1Тайные кланы 2'},
       {id: 3, authorId: 2, genreId: 1, name: 'Волшебство не вызывает привыкания'},
       {id: 4, authorId: 3, genreId: 2, name: 'Варлорд. Темный пакт'},
       {id: 5, authorId: 3, genreId: 2, name: 'Варлорд. Врата Тартара'},

@@ -2,6 +2,10 @@
   border-bottom: 5px solid mediumseagreen;
 }
 
-.is-invalid  {
+.is-invalid {
   border-bottom: 5px solid red;
+}
+
+th {
+  cursor: pointer
 }

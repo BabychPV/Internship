@@ -15,6 +15,7 @@ export class AuthorEditComponent implements OnInit, CanComponentDeactivate {
 
   authorDetail: AuthorBase = new AuthorBase(0, '', '', '', '');
   authorBooks: BookBase[];
+  authorTempBooks: BookBase[];
   authorBook: BookBase = new BookBase(0, 0, 0, '');
   genersList: GenreBase[];
   formAuthorHeader = '';
@@ -25,6 +26,7 @@ export class AuthorEditComponent implements OnInit, CanComponentDeactivate {
   createAuthorFlag = false;
   formBookHeader = '';
   errorMessage: string;
+  arrow = [{up: true, down: true}, {up: true, down: true}];
 
   authorForm: FormGroup;
   name: FormControl;
@@ -48,7 +50,7 @@ export class AuthorEditComponent implements OnInit, CanComponentDeactivate {
     this.activatedRoute.params.forEach((params: Params) => {
       const id = +params.id;
       if (!isNaN(id)) {
-        this.formAuthorHeader = 'Детально про автора';
+        this.formAuthorHeader = 'Редактировать данные про автора';
         // Отримати автора
         this.service
           .getAuthorDetail(id)
@@ -138,6 +140,22 @@ export class AuthorEditComponent implements OnInit, CanComponentDeactivate {
   }
 
   // Книга
+
+  authorSearch($event: any): void {
+    const curVal = $event.target as HTMLInputElement;
+    if (curVal.value === '') {
+      this.authorBooks = this.authorTempBooks;
+    } else {
+      const pattern = new RegExp('^' + curVal.value);
+      this.authorBooks = this.authorTempBooks.filter(word => pattern.test(word.name));
+    }
+
+  }
+
+  authorSort(prop: string, index: number): void {
+    this.service.BaseSort(this.arrow, this.authorBooks, prop, index);
+  }
+
   viewFormBook(book: BookBase): void {
     this.getGenres();
     if (!this.addBookFlag) {
@@ -161,14 +179,9 @@ export class AuthorEditComponent implements OnInit, CanComponentDeactivate {
       .getBooksForAuthor(id)
       .subscribe(result => {
           this.authorBooks = result;
+          this.authorTempBooks = result;
         }, error => this.errorMessage = error
       );
-  }
-
-  addBook(): void {
-    this.service.addBook(this.authorBook).subscribe(() => {
-      this.saved = true;
-    });
   }
 
   modifyBook(bookForm: FormGroup): void {

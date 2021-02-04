@@ -15,7 +15,7 @@ export class AuthorListComponent implements OnInit {
   authors: AuthorBase[] = [];
   books: BookBase[] = [];
   errorMessage: string;
-
+  arrow = [{up: true, down: true}, {up: true, down: true}];
 
   constructor(private router: Router,
               private service: DbService,
@@ -33,6 +33,11 @@ export class AuthorListComponent implements OnInit {
       .subscribe(result => this.authors = result,
         error => this.errorMessage = error);
   }
+
+  genreSort(prop: string, index: number): void {
+    this.service.BaseSort(this.arrow, this.authors, prop, index);
+  }
+
 
   getBooks(): void {
     this.service

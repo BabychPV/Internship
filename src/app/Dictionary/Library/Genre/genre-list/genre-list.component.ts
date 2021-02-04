@@ -15,8 +15,7 @@ export class GenreListComponent implements OnInit {
   genres: GenreBase[] = [];
   books: BookBase[] = [];
   errorMessage: string;
-  arrow = [{up: true, down: true},
-    {up: true, down: true}];
+  arrow = [{up: true, down: true}, {up: true, down: true}];
 
   constructor(private router: Router,
               private service: DbService,
@@ -29,9 +28,7 @@ export class GenreListComponent implements OnInit {
   }
 
   genreSort(prop: string, index: number): void {
-
     this.service.BaseSort(this.arrow, this.genres, prop, index);
-
   }
 
   getGenres(): void {

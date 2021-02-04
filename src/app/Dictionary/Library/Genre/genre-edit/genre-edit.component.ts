@@ -26,18 +26,12 @@ export class GenreEditComponent implements OnInit, CanComponentDeactivate {
   genersList: GenreBase[];
   formGenerHeader = '';
 
-  const;
-  People = [
-    {Name: 'BBB', Surname: 'Surname'},
-    {Name: 'AAA', Surname: 'ZZZ'},
-    {Name: 'CCC', Surname: 'AAA'}
-  ];
-
   saved = true;
   editBookFlag = false;
   createGenerFlag = false;
   formBookHeader = '';
   errorMessage: string;
+  arrow = [{up: true, down: true}, {up: true, down: true}];
 
   generForm: FormGroup;
   name: FormControl;
@@ -52,7 +46,7 @@ export class GenreEditComponent implements OnInit, CanComponentDeactivate {
     this.activatedRoute.params.forEach((params: Params) => {
       const id = +params.id;
       if (!isNaN(id)) {
-        this.formGenerHeader = 'Детально про жанр';
+        this.formGenerHeader = 'Редактировать жанр';
         // Отримати автора
         this.service
           .getGenreDetail(id)
@@ -134,6 +128,10 @@ export class GenreEditComponent implements OnInit, CanComponentDeactivate {
 
   // Книга
 
+  genreSort(prop: string, index: number): void {
+    this.service.BaseSort(this.arrow, this.generBooks, prop, index);
+  }
+
   viewFormBook(book: BookBase): void {
     this.getGenres();
     this.generBook = book;
@@ -153,12 +151,6 @@ export class GenreEditComponent implements OnInit, CanComponentDeactivate {
           this.generBooks = result;
         }, error => this.errorMessage = error
       );
-  }
-
-  addBook(): void {
-    this.service.addBook(this.generBook).subscribe(() => {
-      this.saved = true;
-    });
   }
 
   modifyBook(bookForm: FormGroup): void {

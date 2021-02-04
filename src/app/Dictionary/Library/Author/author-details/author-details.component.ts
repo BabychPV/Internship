@@ -15,6 +15,7 @@ export class AuthorDetailsComponent implements OnInit {
 
   editBookFlag = false;
   errorMessage: string;
+  arrow = [{up: true, down: true}, {up: true, down: true}];
 
   authorForm: FormGroup;
   name: FormControl;
@@ -47,6 +48,12 @@ export class AuthorDetailsComponent implements OnInit {
       this.getBooks(id);
     });
   }
+
+
+  authorSort(prop: string, index: number): void {
+    this.service.BaseSort(this.arrow, this.authorBooks, prop, index);
+  }
+
 
   // Форма
   createFormControls(): void {
